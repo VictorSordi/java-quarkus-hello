@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-hello-deployment
+  namespace: devops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-hello
+  template:
+    metadata:
+      labels:
+        app: java-hello
+    spec:
+      containers:
+      - name: java-hello
+        image: # Missing Image
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-hello
+  namespace: devops
+spec:
+  selector:
+    app: java-hello
+  ports:
+  - port: 5050
+    targetPort: 8080
+    name: tcp
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: java-hello-ingress
+  namespace: devops
+  annotations:
+    kubernetes.io/ingressClassName: "traefik"
+spec:
+  rules:
+  - host: "www.192.168.56.2.sslip.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: java-hello
+            port: 
+              number: 5050
