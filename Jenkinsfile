@@ -30,7 +30,7 @@ pipeline {
                     scannerHome = tool 'sonar-scanner';
                 }
                 withSonarQubeEnv('sonar-server'){
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=java-hello -Dsonar.sources=. -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.token=${env.SONAR_AUTH_TOKEN} -X"
+                    sh "${scannerHome}/bin/sonar-scanner mvn clean install sonar:sonar -Dsonar.projectKey=java-hello -Dsonar.sources=src/main/java/ -Dsonar.java.binaries=target/classes  -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.token=${env.SONAR_AUTH_TOKEN} -X"
                 }
                 sh 'sleep 10'
             }
