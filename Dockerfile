@@ -4,7 +4,7 @@ USER root
 
 RUN apk update && apk --no-cache add bind-tools
 
-COPY target/ .
+COPY . .
 
 CMD ["java", "-jar", "quarkus-run.jar"]
 
