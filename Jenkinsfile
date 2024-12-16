@@ -4,7 +4,7 @@ pipeline {
     environment {
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
 
-        NEXUS_URL = 'http://192.168.56.7:8123' 
+        NEXUS_URL = 'http://192.168.56.7:8091' 
         NEXUS_REPO = 'maven-releases'
         NEXUS_CREDENTIALS_ID = 'nexus-user' 
         DOCKER_IMAGE_NAME = 'java-hello/app' 
