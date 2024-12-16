@@ -4,11 +4,11 @@ pipeline {
     environment {
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
 
-        NEXUS_URL = 'http://192.168.56.7:8123' 
-        NEXUS_REPO = 'maven-releases'
-        NEXUS_CREDENTIALS_ID = 'nexus-user' 
-        DOCKER_IMAGE_NAME = 'java-hello/app' 
-        DOCKER_IMAGE_TAG = 'v1.0.0'
+        //NEXUS_URL = 'http://192.168.56.7:8123' 
+        //NEXUS_REPO = 'maven-releases'
+        //NEXUS_CREDENTIALS_ID = 'nexus-user' 
+        //DOCKER_IMAGE_NAME = 'java-hello/app' 
+        //DOCKER_IMAGE_TAG = 'v1.0.0'
     }
 
     stages {
@@ -62,10 +62,10 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'docker login -u $USERNAME -p $PASSWORD ${NEXUS_URL}'
-                        //sh 'docker tag java-hello/app:${TAG} ${NEXUS_URL}/java-hello/app:${TAG}'
-                        //sh 'docker push ${NEXUS_URL}/java-hello/app:${TAG}'
-                        sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
-                        sh 'docker push $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
+                        sh 'docker tag java-hello/app:${TAG} ${NEXUS_URL}/java-hello/app:${TAG}'
+                        sh 'docker push ${NEXUS_URL}/java-hello/app:${TAG}'
+                        //sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
+                        //sh 'docker push $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
                     }
                 }
             }
