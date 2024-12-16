@@ -66,6 +66,14 @@ pipeline {
                         //sh 'docker push ${NEXUS_URL}/java-hello/app:${TAG}'
                         sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
                         sh 'docker push $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
+
+                        echo "Logging in to Docker registry at $NEXUS_URL" 
+                        sh 'docker login -u $USERNAME -p $PASSWORD ${NEXUS_URL} || exit 1' 
+                        echo "Tagging Docker image" 
+                        sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG || exit 1' 
+                        echo "Pushing Docker image to $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG" 
+                        sh 'docker push $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG || exit 1' 
+                        echo "Docker image pushed successfully"
                     }
                 }
             }
