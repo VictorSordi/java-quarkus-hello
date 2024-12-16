@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: java-hello
-        image: # Missing Image
+        image: java-hello/app:latest
         resources:
           requests:
             memory: "64Mi"
