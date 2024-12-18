@@ -4,11 +4,8 @@ pipeline {
     environment {
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
 
-        //NEXUS_URL = 'http://192.168.56.3:8123'
-        //NEXUS_REPO = 'maven-releases'
-        //NEXUS_CREDENTIALS_ID = 'nexus-user'
-        //DOCKER_IMAGE_NAME = 'java-hello/app'
-        //DOCKER_IMAGE_TAG = 'latest'
+        MVN_REPO_USER = credentials('nexus-username') 
+        MVN_REPO_PASSWORD = credentials('nexus-password')
     }
 
     stages {
@@ -64,6 +61,20 @@ pipeline {
             steps{
                 sh 'docker compose down'
             }
+        }
+
+        stage('Deploy to Nexus') { 
+            steps { 
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+                    sh ''' 
+                    mvn deploy \ 
+                        -DaltDeploymentRepository=nexus::default::${NEXUS_URL}/repository/maven-releases/ \ 
+                        -Dusername=$USERNAME  \ 
+                        -Dpassword=$PASSWORD 
+                    ''' 
+                } 
+            } 
         }
 
         stage('Upload docker image'){
