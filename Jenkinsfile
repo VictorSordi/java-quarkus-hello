@@ -61,8 +61,9 @@ pipeline {
         stage('Deploy to Nexus') { 
             steps { 
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
-                        sh 'mvn deploy -DaltDeploymentRepository=nexus::default::${NEXUS_URL}/repository/maven-releases/ -Dnexus.user=${USERNAME} -Dnexus.password=${PASSWORD}'                
+                    withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                        sh 'mvn deploy -DaltDeploymentRepository=nexus::default::${NEXUS_URL}/repository/maven-releases/ -Dnexus.user=${USERNAME} -Dnexus.password=${PASSWORD}'
+                    }
                 } 
             } 
         }
