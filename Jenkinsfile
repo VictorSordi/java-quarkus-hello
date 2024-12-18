@@ -67,12 +67,12 @@ pipeline {
             steps { 
                 script {
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
-                    sh ''' 
+                    sh """
                     mvn deploy \ 
                         -DaltDeploymentRepository=nexus::default::${NEXUS_URL}/repository/maven-releases/ \ 
-                        -Dusername=$USERNAME  \ 
+                        -Dusername=$USERNAME \ 
                         -Dpassword=$PASSWORD 
-                    ''' 
+                    """
                 } 
             } 
         }
