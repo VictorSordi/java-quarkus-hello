@@ -12,6 +12,14 @@ pipeline {
     }
 
     stages {
+        stage('Build with Maven') { 
+            steps { 
+                script { 
+                    sh 'mvn clean package' 
+                } 
+            } 
+        }   
+
         stage('build docker image'){
         steps{
             sh 'docker build -t java-quarkus-hello/app:${TAG} .'
