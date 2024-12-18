@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('build docker image'){
         steps{
-            sh 'docker build -t java-hello/app:${TAG} .'
+            sh 'docker build -t java-quarkus-hello/app:${TAG} .'
             }
         }
     
@@ -62,8 +62,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh 'docker login -u $USERNAME -p $PASSWORD ${NEXUS_URL}'
-                        sh 'docker tag java-hello/app:latest ${NEXUS_URL}/java-hello/app:latest'
-                        sh 'docker push ${NEXUS_URL}/java-hello/app:latest'
+                        sh 'docker tag java-quarkus-hello/app:${TAG} ${NEXUS_URL}/java-quarkus-hello/app:${TAG}'
+                        sh 'docker push ${NEXUS_URL}/java-quarkus-hello/app:${TAG}'
                         //sh 'docker tag $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
                         //sh 'docker push $NEXUS_URL/repository/$NEXUS_REPO/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG' 
                     }
