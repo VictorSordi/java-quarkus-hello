@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-hello-deployment
+  name: java-quarkus-hello-deployment
   namespace: devops
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: java-hello
+      app: java-quarkus-hello
   template:
     metadata:
       labels:
-        app: java-hello
+        app: java-quarkus-hello
     spec:
       containers:
-      - name: java-hello
-        image: java-hello/app:latest
+      - name: java-quarkus-hello
+        image: java-quarkus-hello/app:latest
         resources:
           requests:
             memory: "64Mi"
@@ -24,21 +24,21 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 8080
+        - containerPort: 5050
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: java-hello
+  name: java-quarkus-hello
   namespace: devops
 spec:
   selector:
-    app: java-hello
+    app: java-quarkus-hello
   ports:
   - port: 5050
-    targetPort: 8080
+    targetPort: 5050
     name: tcp
 
 ---
@@ -46,7 +46,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: java-hello-ingress
+  name: java-quarkus-hello-ingress
   namespace: devops
   annotations:
     kubernetes.io/ingressClassName: "traefik"
@@ -59,6 +59,6 @@ spec:
         path: "/"
         backend:
           service:
-            name: java-hello
+            name: java-quarkus-hello
             port: 
               number: 5050

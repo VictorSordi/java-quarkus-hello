@@ -73,7 +73,7 @@ pipeline {
 
         stage("Apply kubernetes files"){
             steps{
-                sh '/usr/local/bin/kubectl apply -f ./kubernetes/app.yaml'
+                sh '/usr/local/bin/kubectl apply -f ./kubernetes/java-quarkus-hello.yaml'
             }
         }
     }
