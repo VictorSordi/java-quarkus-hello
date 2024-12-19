@@ -4,18 +4,18 @@
 
     <servers>
         <server>
-            <id>jenkins-releases</id>
-            <username>jenkins</username>
-            <password>J3nk1ns@</password>
+            <id>teste</id>
+            <username>teste</username>
+            <password>teste</password>
         </server>
     </servers>
 
     <profiles>
         <profile>
-            <id>jenkins-releases</id>
+            <id>teste</id>
             <repositories>
                 <repository>
-                    <id>jenkins-releases</id>
+                    <id>teste</id>
                     <url>http://192.168.56.3:8091/repository/maven-releases/</url>
                     <releases>
                         <enabled>true</enabled>
@@ -27,7 +27,7 @@
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>jenkins-releases</id>
+                    <id>teste</id>
                     <url>http://http://192.168.56.3:8091/repository/maven-releases/</url>
                 </pluginRepository>
             </pluginRepositories>
@@ -35,6 +35,6 @@
     </profiles>
 
     <activeProfiles>
-        <activeProfile>jenkins-releases</activeProfile>
+        <activeProfile>teste</activeProfile>
     </activeProfiles>
 </settings>

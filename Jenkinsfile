@@ -61,8 +61,8 @@ pipeline {
         stage('Deploy to Nexus') { 
             steps { 
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                        sh 'mvn deploy -s /var/lib/jenkins/.m2/settings.xml -DrepositoryId=jenkins-releases -DaltDeploymentRepository=nexus::default::http://192.168.56.3:8091/repository/maven-releases/  -Dnexus.user=jenkins -Dnexus.password=J3nk1ns@  -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true -Dmaven.resolver.transport=wagon'
+                    withCredentials([usernamePassword(credentialsId: 'nexus-teste', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                        sh 'mvn deploy -s /var/lib/jenkins/.m2/settings.xml -DrepositoryId=teste -DaltDeploymentRepository=nexus::default::http://192.168.56.3:8091/repository/maven-releases/  -Dnexus.user=teste -Dnexus.password=teste  -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true -Dmaven.resolver.transport=wagon'
                     }
                 } 
             } 
