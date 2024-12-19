@@ -58,9 +58,9 @@
   </dependencies>
   <distributionManagement> 
     <repository> 
-      <id>jenkins</id> 
+      <id>jenkins-releases</id> 
       <name>releases</name> 
-      <url>http://localhost:8091/repository/maven-releases/</url> 
+      <url>http://192.168.56.3:8091/repository/maven-releases/</url> 
     </repository> 
   </distributionManagement>
   <build>
@@ -70,7 +70,7 @@
         <artifactId>maven-deploy-plugin</artifactId> 
         <version>3.1.3</version> 
         <configuration> 
-          <repositoryId>jenkins</repositoryId> 
+          <repositoryId>jenkins-releases</repositoryId> 
         </configuration> 
       </plugin>
       <plugin>
