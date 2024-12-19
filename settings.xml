@@ -16,7 +16,7 @@
             <repositories>
                 <repository>
                     <id>jenkins-releases</id>
-                    <url>http://192.168.56.3:8091/repository/maven-releases/</url>
+                    <url>http://192.168.56.3:8091/repository/maven-releases/com/java/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -28,7 +28,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>jenkins-releases</id>
-                    <url>http://http://192.168.56.3:8091/repository/maven-releases/</url>
+                    <url>http://http://192.168.56.3:8091/repository/maven-releases/com/java/</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
