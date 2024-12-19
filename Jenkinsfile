@@ -62,7 +62,7 @@ pipeline {
             steps { 
                 script {
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                        sh 'mvn deploy -s /var/lib/jenkins/.m2/settings.xml -DrepositoryId=jenkins-releases -DaltDeploymentRepository=nexus::default::http://192.168.56.3:8091/repository/maven-releases/com/java/quarkus-hello/  -Dnexus.user=jenkins -Dnexus.password=J3nk1ns@'
+                        sh 'mvn deploy -s /var/lib/jenkins/.m2/settings.xml -DrepositoryId=jenkins-releases -DaltDeploymentRepository=nexus::default::http://192.168.56.3:8091/repository/maven-releases/com/java/quarkus-hello/1.0.0/  -Dnexus.user=jenkins -Dnexus.password=J3nk1ns@'
                     }
                 } 
             } 
