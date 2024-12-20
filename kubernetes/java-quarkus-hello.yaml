@@ -24,7 +24,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 5050
+        - containerPort: 8080
 
 ---
 
@@ -38,7 +38,7 @@ spec:
     app: java-quarkus-hello
   ports:
   - port: 5050
-    targetPort: 5050
+    targetPort: 8080
     name: tcp
 
 ---
