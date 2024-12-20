@@ -56,23 +56,8 @@
       <version>3.17.4</version>
     </dependency>
   </dependencies>
-  <distributionManagement> 
-    <repository> 
-      <id>teste</id> 
-      <name>releases</name> 
-      <url>http://192.168.56.3:8091/repository/maven-releases/</url> 
-    </repository> 
-  </distributionManagement>
   <build>
     <plugins>
-      <plugin> 
-        <groupId>org.apache.maven.plugins</groupId> 
-        <artifactId>maven-deploy-plugin</artifactId> 
-        <version>3.1.0</version> 
-        <configuration> 
-          <repositoryId>teste</repositoryId> 
-        </configuration> 
-      </plugin>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
