@@ -19,12 +19,6 @@ pipeline {
             sh 'docker build -t java-quarkus-hello/app:${TAG} .'
             }
         }
-    
-        stage ('deploy docker compose'){
-        steps{
-            sh 'docker compose up --build -d'
-            }
-        }
 
         stage('sleep for container deploy'){
         steps{
@@ -52,21 +46,6 @@ pipeline {
             }
         }
 
-        stage('Shutdown docker containers') {
-            steps{
-                sh 'docker compose down'
-            }
-        }
-
-        stage('Deploy to Nexus') { 
-            steps { 
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'nexus-teste', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                        sh 'mvn deploy -s /var/lib/jenkins/.m2/settings.xml -DrepositoryId=teste -DaltDeploymentRepository=nexus::default::http://192.168.56.3:8091/repository/maven-releases/  -Dnexus.user=teste -Dnexus.password=teste  -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true -Dmaven.resolver.transport=wagon -Dmaven.wagon.provider.http=httpclient'
-                    }
-                } 
-            } 
-        }
 
         stage('Upload docker image'){
             steps{
