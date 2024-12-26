@@ -15,6 +15,10 @@
     <quarkus.platform.version>3.17.4</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.2</surefire-plugin.version>
+    <configuration>
+      <source>1.8</source>
+      <target>1.8</target>
+    </configuration>
   </properties>
   <dependencyManagement>
     <dependencies>
