@@ -10,7 +10,7 @@ pipeline {
             steps { 
                 script {
                     sh 'mvn clean package'
-                    sh "mvn clean install -s /root/.m2/settings.xml"
+                    sh "mvn clean install -s ~/.m2/settings.xml"
                 } 
             } 
         }   
