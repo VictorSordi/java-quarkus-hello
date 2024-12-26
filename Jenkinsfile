@@ -8,8 +8,9 @@ pipeline {
     stages {
         stage('Build with Maven') { 
             steps { 
-                script { 
+                script {
                     sh 'mvn clean package'
+                    sh "mvn clean install -s ~/.m2/settings.xml"
                 } 
             } 
         }   
