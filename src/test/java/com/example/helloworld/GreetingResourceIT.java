@@ -1,3 +1,5 @@
+package com.example.helloworld;
+
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
 @QuarkusIntegrationTest
